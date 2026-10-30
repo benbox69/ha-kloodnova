@@ -66,7 +66,7 @@ For a project called *Home* with a zone called *Office*:
 ### Good to know
 
 - **Mode and fan speed are global.** They apply to the whole unit: changing them from one thermostat changes them for every zone. The fan speed can be set from any thermostat or from the dedicated select.
-- **General stop** turns every thermostat off. When resuming, the unit puts the fan back on *auto* after a few seconds.
+- **General stop** turns every thermostat off.
 - **Updates are polled.** Changes made in the Koolnova app appear within the refresh interval. Lower it in *Configure* if you want them faster; very low values mean more requests to the cloud.
 - If the unit loses its connection to the cloud, its entities become *unavailable*.
 - Not available through the cloud: engine states, power consumption and global efficiency. A local Modbus integration is a good complement for those.
@@ -77,20 +77,6 @@ For a project called *Home* with a zone called *Office*:
 - **Manual:** replace the `custom_components/kloodnova` folder, then restart Home Assistant. Reloading the integration is not enough, Home Assistant must restart to load new code.
 
 Your account, projects and zones do not need to be configured again.
-
-## Development
-
-```bash
-# Run the test suite (Python 3.12)
-python3.12 -m venv .venv-ha
-.venv-ha/bin/pip install -r requirements-test.txt
-.venv-ha/bin/python -m pytest
-```
-
-- [`docs/API.md`](docs/API.md) documents the Koolnova cloud API as observed (routes, formats, quirks).
-- [`custom_components/kloodnova/api.py`](custom_components/kloodnova/api.py) is a standalone async client with no Home Assistant dependency.
-- `test_koolnova_api.py` exercises that client against the real cloud, read-only by default (`--write` adds reversible writes).
-- `assets/build_brand.py` regenerates the logo.
 
 ## Disclaimer
 
