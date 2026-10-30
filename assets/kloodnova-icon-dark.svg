@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <title>Kloodnova</title>
+  <rect fill="#F2F2F2" x="44" y="100" width="168" height="60" rx="30"/>
+  <circle fill="#F2F2F2" cx="92" cy="106" r="34"/>
+  <circle fill="#F2F2F2" cx="136" cy="84" r="46"/>
+  <circle fill="#F2F2F2" cx="180" cy="110" r="32"/>
+  <polygon fill="#141414" points="98.0,64.0 113.0,64.0 113.0,146.0 98.0,146.0"/>
+  <polygon fill="#141414" points="118.0,115.0 149.0,146.0 127.0,146.0 118.0,137.0"/>
+  <polygon fill="#D9338A" points="118.0,88.0 139.8,64.0 159.8,64.0 118.0,110.0"/>
+  <polygon fill="#D9338A" points="65.0,174.0 187.0,174.0 176.0,185.0 54.0,185.0"/>
+  <polygon fill="#D9338A" points="93.0,192.0 217.0,192.0 206.0,203.0 82.0,203.0"/>
+  <polygon fill="#D9338A" points="65.0,210.0 151.0,210.0 140.0,221.0 54.0,221.0"/>
+</svg>

@@ -1,0 +1,5 @@
+# Environnement de test de l'intégration (Python 3.12)
+homeassistant==2025.1.4
+pytest-homeassistant-custom-component
+# Une version plus récente de pycares laisse un thread que le plugin de test refuse.
+pycares<4.9

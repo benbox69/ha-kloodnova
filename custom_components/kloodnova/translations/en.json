@@ -1,0 +1,128 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Koolnova account",
+        "description": "Sign in with the account you use in the Koolnova app.",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "Choose the projects (installations) to add.",
+        "data": {
+          "projects": "Projects"
+        }
+      },
+      "zones": {
+        "title": "Zones",
+        "description": "Choose the zones to add. Each one becomes a thermostat.",
+        "data": {
+          "zones": "Zones"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Sign in again",
+        "description": "Enter the new password for {email}.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid email or password.",
+      "cannot_connect": "Cannot reach the Koolnova cloud.",
+      "unknown": "Unexpected error.",
+      "no_project": "Select at least one project.",
+      "no_zone": "Select at least one zone."
+    },
+    "abort": {
+      "already_configured": "This account is already configured.",
+      "no_projects": "No project found on this account.",
+      "reauth_successful": "Re-authentication successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Configure Kloodnova",
+        "description": "What do you want to change?",
+        "menu_options": {
+          "selection": "Projects and zones",
+          "interval": "Refresh interval"
+        }
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "Choose the projects (installations) to use.",
+        "data": {
+          "projects": "Projects"
+        }
+      },
+      "zones": {
+        "title": "Zones",
+        "description": "Choose the zones to use. Each one becomes a thermostat.",
+        "data": {
+          "zones": "Zones"
+        }
+      },
+      "interval": {
+        "title": "Refresh interval",
+        "description": "How often Home Assistant reads the Koolnova cloud. Changes made in the Koolnova app show up after at most this delay. Lower values mean more requests to the cloud.",
+        "data": {
+          "scan_interval": "Interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid email or password.",
+      "cannot_connect": "Cannot reach the Koolnova cloud.",
+      "no_project": "Select at least one project.",
+      "no_zone": "Select at least one zone."
+    },
+    "abort": {
+      "invalid_auth": "Authentication failed. Re-authenticate the integration.",
+      "cannot_connect": "Cannot reach the Koolnova cloud."
+    }
+  },
+  "entity": {
+    "select": {
+      "mode": {
+        "name": "Mode",
+        "state": {
+          "cool": "Cooling",
+          "heat": "Heating",
+          "floor_heat": "Floor heating",
+          "floor_cool_air": "Floor cooling + cold air",
+          "floor_heat_air": "Floor heating + warm air"
+        }
+      },
+      "fan_speed": {
+        "name": "Fan",
+        "state": {
+          "low": "Low",
+          "medium": "Medium",
+          "high": "High",
+          "auto": "Auto"
+        }
+      }
+    },
+    "binary_sensor": {
+      "connected": {
+        "name": "Connected"
+      }
+    },
+    "sensor": {
+      "rssi": {
+        "name": "Wi-Fi signal"
+      }
+    },
+    "switch": {
+      "stop": {
+        "name": "General stop"
+      }
+    }
+  }
+}
