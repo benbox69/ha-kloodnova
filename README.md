@@ -11,6 +11,15 @@ le compte à utiliser est votre compte **Koolnova** (celui de l'app).
 
 ## Installation dans Home Assistant
 
+### Avec HACS (recommandé)
+
+1. *HACS → ⋮ (menu) → Dépôts personnalisés*, ajouter
+   `https://github.com/benbox69/ha-kloodnova` avec la catégorie **Intégration**.
+2. Installer « Kloodnova » depuis HACS, puis **redémarrer** Home Assistant.
+3. Les mises à jour suivantes se font depuis HACS.
+
+### À la main
+
 1. Copier le dossier `custom_components/kloodnova/` dans le dossier
    `config/custom_components/` de votre Home Assistant, puis redémarrer.
 2. *Paramètres → Appareils et services → Ajouter une intégration → Kloodnova*.

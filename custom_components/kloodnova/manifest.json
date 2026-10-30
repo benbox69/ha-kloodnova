@@ -1,11 +1,14 @@
 {
   "domain": "kloodnova",
   "name": "Kloodnova",
-  "codeowners": [],
+  "codeowners": [
+    "@benbox69"
+  ],
   "config_flow": true,
-  "documentation": "https://www.koolnova.com/",
+  "documentation": "https://github.com/benbox69/ha-kloodnova",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/benbox69/ha-kloodnova/issues",
   "requirements": [],
   "version": "0.1.0"
 }
