@@ -1,147 +1,103 @@
-<p align="center"><img src="assets/preview.png" alt="Logo Kloodnova" width="720"></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="custom_components/kloodnova/brand/dark_logo@2x.png">
+    <img src="custom_components/kloodnova/brand/logo@2x.png" alt="Kloodnova" width="420">
+  </picture>
+</p>
 
-# Kloodnova — Koolnova × Home Assistant
+<p align="center">
+  <a href="https://hacs.xyz"><img alt="HACS Custom" src="https://img.shields.io/badge/HACS-Custom-orange.svg"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+</p>
 
-Intégration Home Assistant pour un système de climatisation par zones Koolnova,
-via leur cloud (`api.koolnova.com`). Le domaine de l'intégration est `kloodnova` ;
-le compte à utiliser est votre compte **Koolnova** (celui de l'app).
+# Kloodnova
 
-**État** : intégration fonctionnelle, testée contre le vrai cloud (lecture et
-écriture du client) et par 40 tests automatisés. À valider dans votre Home Assistant.
+A Home Assistant integration for **[Koolnova](https://www.koolnova.com) zoned air-conditioning systems**, using the Koolnova cloud — the same account you use in the Koolnova app.
 
-## Installation dans Home Assistant
+Pick your installation and the zones you want, and Kloodnova creates one thermostat per zone plus the global controls of your unit, all grouped under a single device.
 
-### Avec HACS (recommandé)
+> **Unofficial.** Kloodnova is an independent project, not affiliated with or endorsed by Koolnova. See [Disclaimer](#disclaimer).
 
-1. *HACS → ⋮ (menu) → Dépôts personnalisés*, ajouter
-   `https://github.com/benbox69/ha-kloodnova` avec la catégorie **Intégration**.
-2. Installer « Kloodnova » depuis HACS, puis **redémarrer** Home Assistant.
-3. Les mises à jour suivantes se font depuis HACS.
+## Features
 
-### À la main
+- **One thermostat per zone**: current and target temperature (0.5 °C steps), heat / cool / off, fan speed.
+- **Global controls** for the whole unit: operating mode, fan speed and a general stop.
+- **One device per installation**, named `Kloodnova <project>`, holding every zone and setting.
+- **Guided setup**: sign in, choose your projects, then choose your zones. Change them any time from *Configure*.
+- **Adjustable refresh rate** from 15 to 600 seconds (60 s by default).
+- Connectivity and Wi-Fi signal diagnostics, English and French translations.
 
-1. Copier le dossier `custom_components/kloodnova/` dans le dossier
-   `config/custom_components/` de votre Home Assistant, puis redémarrer.
-2. *Paramètres → Appareils et services → Ajouter une intégration → Kloodnova*.
-3. L'assistant demande, dans l'ordre :
-   1. **vos identifiants** Koolnova (ceux de l'app) ;
-   2. **les projets** (installations) à ajouter ;
-   3. **les zones** à ajouter.
-4. Pour changer plus tard : *Kloodnova → Configurer*, qui propose un menu :
-   - **Projets et zones** : les zones décochées sont supprimées de HA ;
-   - **Intervalle de rafraîchissement** (15 à 600 s, 60 s par défaut), appliqué
-     immédiatement, sans rechargement.
+## Installation
 
-## Mettre à jour une version déjà installée
+### HACS (recommended)
 
-1. Remplacer le dossier `config/custom_components/kloodnova/` par la nouvelle version
-   (copie directe sur le partage `config` de Home Assistant, ou Samba/SSH/File editor).
-2. **Redémarrer Home Assistant** : *Paramètres → Système → Redémarrer*. Un simple
-   « Recharger » de l'intégration ne suffit pas, car le code Python déjà chargé n'est pas relu.
-3. Vérifier *Paramètres → Système → Journaux* (filtrer « kloodnova ») : aucune erreur attendue.
-4. Les entités existantes sont conservées (identifiants inchangés) ; la configuration
-   (identifiants, projets, zones) n'a pas besoin d'être refaite.
+1. In HACS, open the menu (⋮) → **Custom repositories**.
+2. Add `https://github.com/benbox69/ha-kloodnova` with the category **Integration**.
+3. Install **Kloodnova**, then restart Home Assistant.
 
-Version minimale de Home Assistant testée : **2025.1**.
+### Manual
 
-## Ce qui est créé : un appareil par projet
+Copy the `custom_components/kloodnova` folder into the `custom_components` folder of your Home Assistant configuration, then restart Home Assistant.
 
-Chaque projet devient **un seul appareil « Kloodnova <Projet> »** qui regroupe les
-thermostats de ses zones et les réglages de la centrale. Tous les identifiants
-suivent le modèle `kloodnova_<projet>_…` :
+Requires Home Assistant **2025.1** or newer.
 
-| Entité | Section de l'appareil | Rôle |
+## Setup
+
+1. Go to **Settings → Devices & services → Add integration** and search for **Kloodnova**.
+2. Sign in with your **Koolnova account** (email and password of the Koolnova app).
+3. Select the **projects** (installations) to add.
+4. Select the **zones** to add.
+
+To change your selection or the refresh rate later, open the integration and choose **Configure**.
+
+## Entities
+
+For a project called *Home* with a zone called *Office*:
+
+| Entity | Section | Description |
 |---|---|---|
-| `climate.kloodnova_<projet>_<zone>` (une par zone choisie) | Contrôles | température mesurée / consigne (pas 0,5 °C), `off` / `heat` / `cool`, **ventilation** |
-| `select.kloodnova_<projet>_mode` | **Configuration** | **mode global** de la centrale : climatisation, chauffage (plancher si activé sur l'installation) |
-| `select.kloodnova_<projet>_fan` | **Configuration** | **ventilation globale** : faible, moyenne, forte, auto |
-| `switch.kloodnova_<projet>_general_stop` | **Configuration** | **arrêt général** de la climatisation (activé = centrale à l'arrêt, comme le bouton STOP de l'app) |
-| `binary_sensor.kloodnova_<projet>_connected` | Diagnostic | la centrale est-elle en ligne ? |
-| `sensor.kloodnova_<projet>_wi_fi_signal` | Diagnostic | RSSI (désactivé par défaut) |
+| `climate.kloodnova_home_office` | Controls | One thermostat per selected zone: temperature, target, heat / cool / off, fan speed |
+| `select.kloodnova_home_mode` | Configuration | Global operating mode (cooling, heating) |
+| `select.kloodnova_home_fan` | Configuration | Global fan speed (low, medium, high, auto) |
+| `switch.kloodnova_home_general_stop` | Configuration | General stop of the unit (on = stopped), like the STOP button of the app |
+| `binary_sensor.kloodnova_home_connected` | Diagnostic | Whether the unit is online |
+| `sensor.kloodnova_home_wi_fi_signal` | Diagnostic | Wi-Fi signal strength (disabled by default) |
 
-Exemple pour le projet « Maison » : `climate.kloodnova_maison_office`,
-`select.kloodnova_maison_mode`, `switch.kloodnova_maison_general_stop`.
+### Good to know
 
-### À savoir
+- **Mode and fan speed are global.** They apply to the whole unit: changing them from one thermostat changes them for every zone. The fan speed can be set from any thermostat or from the dedicated select.
+- **General stop** turns every thermostat off. When resuming, the unit puts the fan back on *auto* after a few seconds.
+- **Updates are polled.** Changes made in the Koolnova app appear within the refresh interval. Lower it in *Configure* if you want them faster; very low values mean more requests to the cloud.
+- If the unit loses its connection to the cloud, its entities become *unavailable*.
+- Not available through the cloud: engine states, power consumption and global efficiency. A local Modbus integration is a good complement for those.
 
-- **Le mode chaud/froid est global.** Demander `heat` ou `cool` sur un thermostat
-  change le mode de la centrale, donc de toutes les zones.
-- **La ventilation est globale** (vérifié : régler une zone règle toutes les zones).
-  Elle reste réglable depuis chaque thermostat **et** depuis l'appareil du projet ;
-  dans les deux cas, toutes les zones suivent.
-- **Arrêt général** : tant qu'il est activé, tous les thermostats apparaissent `off`.
-  À la reprise, la centrale remet la ventilation sur `auto` environ 6 s plus tard.
-- **Hors ligne** : si la centrale est déconnectée du cloud, les thermostats et
-  les réglages passent en `indisponible`.
-- **Rafraîchissement** : toutes les 60 s par défaut, réglable de 15 à 600 s (une seule requête par projet). Après
-  une commande, l'état affiché est immédiat puis confirmé par une relecture 5 s plus tard.
-- **Plage de consigne** 15–30 °C : choix par défaut, non vérifié (à confirmer).
-- **Mise à jour depuis une version antérieure** : les thermostats sont rattachés à
-  l'appareil du projet et les anciens appareils de zone sont supprimés. Les
-  identifiants **générés automatiquement** par les versions précédentes
-  (`climate.office`, `select.maison_mode`…) sont renommés en `kloodnova_<projet>_…` (y compris ceux de la version intermédiaire en `koolnova_<projet>_…`)
-  (pensez aux tableaux de bord et automatisations qui les citent). Un identifiant que
-  vous avez personnalisé n'est jamais renommé, ni un identifiant déjà pris par une autre entité.
+## Updating
 
-## Contenu du dépôt
+- **HACS:** update from HACS, then restart Home Assistant.
+- **Manual:** replace the `custom_components/kloodnova` folder, then restart Home Assistant. Reloading the integration is not enough, Home Assistant must restart to load new code.
 
-| Chemin | Rôle |
-|---|---|
-| `custom_components/kloodnova/` | l'intégration (`api.py` = client, sans dépendance à HA) |
-| `custom_components/kloodnova/brand/` | logo et icône (clair et sombre) affichés par HA |
-| `assets/` | sources du logo : `build_brand.py` (génère SVG et PNG), SVG, aperçu |
-| `koolnova_api.py` | lien symbolique vers `api.py`, pour les scripts et le test en ligne de commande |
-| `test_koolnova_api.py` | test du client contre le vrai cloud (CLI) |
-| `tests/` | tests de l'intégration (pytest) |
-| `docs/API.md` | documentation de l'API : routes, formats, pièges. **À lire en premier.** |
+Your account, projects and zones do not need to be configured again.
 
-## Non officiel
-
-Kloodnova est un projet **indépendant, non affilié à Koolnova** et non approuvé par
-cette société. Il s'appuie sur l'API cloud de Koolnova telle qu'elle est observée dans
-ses applications officielles : elle n'est pas documentée publiquement et peut changer
-sans préavis. « Koolnova » est une marque de ses propriétaires ; le nom « Kloodnova » et
-le logo de ce dépôt sont des créations originales qui n'impliquent aucun lien officiel.
-À utiliser à vos risques, avec votre propre compte.
-
-## Logo
-
-Un nuage (le cloud) portant un **K** à facettes dans l'esprit de Koolnova, noir et
-magenta, avec trois filets d'air de climatisation dessous. Régénération :
-`.venv/bin/pip install pillow && .venv/bin/python assets/build_brand.py`.
-Home Assistant charge les images du dossier `brand/` des intégrations
-personnalisées dans les versions récentes (2026.3 et plus, à vérifier).
-
-## Tests
+## Development
 
 ```bash
-# 1) Client contre le vrai cloud (lecture seule ; --write = écritures réversibles)
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-export KOOLNOVA_EMAIL=… KOOLNOVA_PASSWORD=…          # sinon demandés au clavier
-.venv/bin/python test_koolnova_api.py [--write [--with-stop]]
-
-# 2) Intégration avec un vrai Home Assistant et un faux client (40 tests, sans réseau)
-/opt/homebrew/bin/python3.12 -m venv .venv-ha
+# Run the test suite (Python 3.12)
+python3.12 -m venv .venv-ha
 .venv-ha/bin/pip install -r requirements-test.txt
 .venv-ha/bin/python -m pytest
-
-# 3) Intégration de bout en bout contre le vrai cloud (lecture seule)
-KOOLNOVA_EMAIL=… KOOLNOVA_PASSWORD=… .venv-ha/bin/python -m pytest tests/test_live.py
 ```
 
-## À faire
+- [`docs/API.md`](docs/API.md) documents the Koolnova cloud API as observed (routes, formats, quirks).
+- [`custom_components/kloodnova/api.py`](custom_components/kloodnova/api.py) is a standalone async client with no Home Assistant dependency.
+- `test_koolnova_api.py` exercises that client against the real cloud, read-only by default (`--write` adds reversible writes).
+- `assets/build_brand.py` regenerates the logo.
 
-- [ ] Valider dans votre Home Assistant (2026.10) : affichage, logo, migration.
-- [ ] Confirmer la plage de consigne acceptée par les centrales.
-- [ ] Vérifier les modes plancher 4/5/6 si une installation les active.
-- [x] WebSocket : étudié, **inutilisable** (routes non servies ; l'app web fait elle-même du polling toutes les 50 s). Voir `docs/API.md`.
+## Disclaimer
 
-## Sécurité
+Kloodnova is not affiliated with, authorized or endorsed by Koolnova. It relies on the cloud API used by the official Koolnova apps, which is not publicly documented and may change or stop working without notice. "Koolnova" is a trademark of its respective owners; the Kloodnova name and logo are original creations that imply no official relationship. Use it at your own risk and with your own account.
 
-Ne jamais committer d'identifiants ni de tokens (voir `.gitignore`). Le mot de
-passe est stocké dans l'entrée de configuration de HA, car l'API n'offre pas
-d'autre moyen de se reconnecter quand les tokens (500 jours) expirent.
+Your Koolnova password is stored in your Home Assistant configuration so the integration can sign in again when its tokens expire.
 
-## Licence
+## License
 
 [MIT](LICENSE)
