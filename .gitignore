@@ -1,0 +1,16 @@
+.venv/
+.venv-ha/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# secrets : ne jamais committer
+tokens.json
+*.token
+.secrets/
+.env
+
+# non publiés : copie du code du fabricant et scripts d'exploration liés à une installation
+reference/
+scripts/

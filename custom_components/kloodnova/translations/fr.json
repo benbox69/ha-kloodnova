@@ -1,0 +1,128 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Compte Koolnova",
+        "description": "Connectez-vous avec le compte utilisé dans l'application Koolnova.",
+        "data": {
+          "email": "Email",
+          "password": "Mot de passe"
+        }
+      },
+      "projects": {
+        "title": "Projets",
+        "description": "Choisissez les projets (installations) à ajouter.",
+        "data": {
+          "projects": "Projets"
+        }
+      },
+      "zones": {
+        "title": "Zones",
+        "description": "Choisissez les zones à ajouter. Chacune devient un thermostat.",
+        "data": {
+          "zones": "Zones"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Se reconnecter",
+        "description": "Saisissez le nouveau mot de passe de {email}.",
+        "data": {
+          "password": "Mot de passe"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Email ou mot de passe invalide.",
+      "cannot_connect": "Impossible de joindre le cloud Koolnova.",
+      "unknown": "Erreur inattendue.",
+      "no_project": "Sélectionnez au moins un projet.",
+      "no_zone": "Sélectionnez au moins une zone."
+    },
+    "abort": {
+      "already_configured": "Ce compte est déjà configuré.",
+      "no_projects": "Aucun projet trouvé sur ce compte.",
+      "reauth_successful": "Reconnexion réussie."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Configurer Kloodnova",
+        "description": "Que voulez-vous modifier ?",
+        "menu_options": {
+          "selection": "Projets et zones",
+          "interval": "Intervalle de rafraîchissement"
+        }
+      },
+      "projects": {
+        "title": "Projets",
+        "description": "Choisissez les projets (installations) à utiliser.",
+        "data": {
+          "projects": "Projets"
+        }
+      },
+      "zones": {
+        "title": "Zones",
+        "description": "Choisissez les zones à utiliser. Chacune devient un thermostat.",
+        "data": {
+          "zones": "Zones"
+        }
+      },
+      "interval": {
+        "title": "Intervalle de rafraîchissement",
+        "description": "Fréquence à laquelle Home Assistant relit le cloud Koolnova. Un changement fait dans l'app Koolnova apparaît au plus tard après ce délai. Une valeur plus basse multiplie les requêtes vers le cloud.",
+        "data": {
+          "scan_interval": "Intervalle (secondes)"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Email ou mot de passe invalide.",
+      "cannot_connect": "Impossible de joindre le cloud Koolnova.",
+      "no_project": "Sélectionnez au moins un projet.",
+      "no_zone": "Sélectionnez au moins une zone."
+    },
+    "abort": {
+      "invalid_auth": "Authentification refusée. Reconnectez l'intégration.",
+      "cannot_connect": "Impossible de joindre le cloud Koolnova."
+    }
+  },
+  "entity": {
+    "select": {
+      "mode": {
+        "name": "Mode",
+        "state": {
+          "cool": "Climatisation",
+          "heat": "Chauffage",
+          "floor_heat": "Plancher chauffant",
+          "floor_cool_air": "Plancher rafraîchissant + air froid",
+          "floor_heat_air": "Plancher chauffant + air chaud"
+        }
+      },
+      "fan_speed": {
+        "name": "Ventilation",
+        "state": {
+          "low": "Faible",
+          "medium": "Moyenne",
+          "high": "Forte",
+          "auto": "Auto"
+        }
+      }
+    },
+    "binary_sensor": {
+      "connected": {
+        "name": "Connectée"
+      }
+    },
+    "sensor": {
+      "rssi": {
+        "name": "Signal Wi-Fi"
+      }
+    },
+    "switch": {
+      "stop": {
+        "name": "Arrêt général"
+      }
+    }
+  }
+}
