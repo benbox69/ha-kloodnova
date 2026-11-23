@@ -73,7 +73,7 @@ For a project called *Home* with a zone called *Office*:
 - **General stop** turns every thermostat off.
 - **Updates are polled.** Changes made in the Koolnova app appear within the refresh interval. Lower it in *Configure* if you want them faster; very low values mean more requests to the cloud.
 - If the unit loses its connection to the cloud, its entities become *unavailable*.
-- Not available through the cloud: engine states, power consumption and global efficiency. A local Modbus integration is a good complement for those.
+- Not available through the cloud: engine states, power consumption and global efficiency. A local BMS / Modbus integration provides them but needs an extra device wired to the unit; Kloodnova needs no extra hardware, and the two can be used together.
 
 ## Updating
 
