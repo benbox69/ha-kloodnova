@@ -31,6 +31,10 @@ Pick your installation and the zones you want, and Kloodnova creates one thermos
 
 ### HACS (recommended)
 
+[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=benbox69&repository=ha-kloodnova&category=integration)
+
+Or manually:
+
 1. In HACS, open the menu (⋮) → **Custom repositories**.
 2. Add `https://github.com/benbox69/ha-kloodnova` with the category **Integration**.
 3. Install **Kloodnova**, then restart Home Assistant.
