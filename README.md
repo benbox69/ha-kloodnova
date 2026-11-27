@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://hacs.xyz"><img alt="HACS Custom" src="https://img.shields.io/badge/HACS-Custom-orange.svg"></a>
+  <a href="https://www.home-assistant.io/integrations/marketplace/"><img alt="Marketplace Custom" src="https://img.shields.io/badge/Marketplace-Custom-orange.svg"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 </p>
 
@@ -29,15 +29,17 @@ Pick your installation and the zones you want, and Kloodnova creates one thermos
 
 ## Installation
 
-### HACS (recommended)
+### Marketplace (recommended)
 
-[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=benbox69&repository=ha-kloodnova&category=integration)
+[![Open your Home Assistant instance and open this repository in the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=benbox69&repository=ha-kloodnova&category=integration)
 
-Or manually:
+Or add it yourself (Home Assistant 2026.11 or newer):
 
-1. In HACS, open the menu (⋮) → **Custom repositories**.
-2. Add `https://github.com/benbox69/ha-kloodnova` with the category **Integration**.
-3. Install **Kloodnova**, then restart Home Assistant.
+1. Go to **Settings → Marketplace** and select **Add from link**.
+2. Enter `https://github.com/benbox69/ha-kloodnova`, then select **Add**. If asked for a type, choose the integration one. Adding a custom repository requires the Marketplace to be connected to GitHub.
+3. Open **Kloodnova** in the list, select **Install**, then restart Home Assistant.
+
+**Older versions with HACS:** in HACS, open the menu (⋮) → **Custom repositories**, add the same URL with the category **Integration**, install **Kloodnova**, then restart Home Assistant.
 
 ### Manual
 
@@ -77,7 +79,7 @@ For a project called *Home* with a zone called *Office*:
 
 ## Updating
 
-- **HACS:** update from HACS, then restart Home Assistant.
+- **Marketplace:** install the update from **Settings → Updates** (or from HACS on older versions), then restart Home Assistant.
 - **Manual:** replace the `custom_components/kloodnova` folder, then restart Home Assistant. Reloading the integration is not enough, Home Assistant must restart to load new code.
 
 Your account, projects and zones do not need to be configured again.
