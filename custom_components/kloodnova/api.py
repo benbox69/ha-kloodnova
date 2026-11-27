@@ -1,8 +1,6 @@
 """Client asynchrone du cloud Koolnova (https://api.koolnova.com).
 
-Aucune dépendance à Home Assistant : seulement aiohttp, pour pouvoir être
-copié tel quel dans l'intégration (custom_components/kloodnova/api.py) et testé
-en ligne de commande (voir test_koolnova_api.py).
+Aucune dépendance à Home Assistant : seulement aiohttp.
 
 Points établis par rétro-ingénierie (web app + app mobile) et vérifiés sur un
 compte réel le 2026-10-29 :

@@ -15,3 +15,14 @@ tokens.json
 reference/
 scripts/
 promo/
+
+# usage interne : non distribués aux utilisateurs
+tests/
+test_koolnova_api.py
+koolnova_api.py
+pytest.ini
+requirements*.txt
+docs/
+assets/
+custom_components/__init__.py
+.github/workflows/tests.yml
